@@ -50,11 +50,11 @@ for (int i = 0; i < corestr.Length; i++)
     ind = letters.IndexOf(corestr[i]);
     counts[ind] = counts[ind] + 1;
 }
-for (int j = 0; j < letters.Count; j++)
+/*for (int j = 0; j < letters.Count; j++)
 {
     //Console.WriteLine(ruletters[j] + ": " + ruchances[j] + "    " + letters[j] + ": " + counts[j] / corestr.Length);
 
-}
+}*/
 //Sorting
 Console.WriteLine("======================");
 double bubd = 0;
@@ -135,14 +135,4 @@ for (int j = 0; j < ruletters.Count; j++)
 
 }
 
-void Omega()
-{
-    StringBuilder binaryN = new StringBuilder("100110");
-    StringBuilder sb = new StringBuilder("0");
-    while (!binaryN.Equals("1"))
-    {
-        sb.Insert(0, binaryN);
-        binaryN.Remove(binaryN.Length - 1,1);
-    }
-    Console.WriteLine(sb.ToString());
-}*/
+*/
