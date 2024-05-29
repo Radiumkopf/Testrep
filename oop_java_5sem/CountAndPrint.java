@@ -80,14 +80,14 @@ public class CountAndPrint {
 
     }
 
-    public static void printModelAndPrices(Transportable tran) {
+    public static final void printModelAndPrices(Transportable tran) {
         int[] prices = tran.getPriceArr();
         String[] models = tran.getModelNameArr();
         for (int i = 0; i < prices.length; i++) {
             System.out.println(models[i] + ", price:" + prices[i]);
         }
     }
-
+    //byte stream writing (L3)
     public static void outputTran(Transportable tran, OutputStream out) throws IOException {
         DataOutputStream dos = new DataOutputStream(out);
         byte[] tranClass = tran.getClass().getName().getBytes();
@@ -111,7 +111,7 @@ public class CountAndPrint {
         }
 
     }
-
+    //byte stream reading
     public static Transportable inputTran(InputStream in) throws IOException, DuplicateModelNameException, ModelPriceOutOfBoundsException {
         DataInputStream dis = new DataInputStream(in);
         byte[] byteClass = new byte[dis.readInt()];
@@ -122,10 +122,28 @@ public class CountAndPrint {
             byteMark[i] = dis.readByte();
         String tranClass = new String(byteClass);
         Transportable tran = null;
-        if (tranClass.equals("com.mycompany.oop_l2.Car"))
-            tran = new Car();
-        else if (tranClass.equals("com.mycompany.oop_l2.Motobike"))
-            tran = new Motobike();
+        switch (tranClass) {
+                case ("class com.mycompany.oop_l2.Car"):
+                    tran = new Car();
+                    tran.modMark(tranMark);
+                    break;
+                case ("class com.mycompany.oop_l2.Motobike"):
+                    tran = new Motobike();
+                    tran.modMark(tranMark);
+                    break;
+                case ("class com.mycompany.oop_l2.Scooter"):
+                    tran = new Scooter();
+                    tran.modMark(tranMark);
+                    break;
+                case ("class com.mycompany.oop_l2.Moped"):
+                    tran = new Moped();
+                    tran.modMark(tranMark);
+                    break;
+                case ("class com.mycompany.oop_l2.Quadbike"):
+                    tran = new Quadbike();
+                    tran.modMark(tranMark);
+                    break;
+        }
         tran.modMark(new String(byteMark));
         int numModels = dis.readInt();
         if (tran != null) {
@@ -141,7 +159,7 @@ public class CountAndPrint {
 
         return tran;
     }
-
+    //text streams (L5 ? idk)
     public static void writeViaPrintf(Transportable tran, Writer out) {
         try (PrintWriter writer = new PrintWriter(out)) {
 
